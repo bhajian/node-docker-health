@@ -1,23 +1,28 @@
 # node-docker-health
 
-The modle is used to be injected to a loopback module for a microservice architecture
-to implement a health signal. This simple api returns a live signal if the application
+The component is used to be injected to a component to your "node.js microservice"/"loopback app" for 
+checking the health when we are running the app in a docker container. 
+This implements a health rest end point that returns a status = "ALIVE".
 is still alive.
 
 ## usage
 
-edit `models-config.json` and add the `"node-docker-health/models",` to `sources` section:
+First, edit `server/component-config.json` and add the following content in it:
+
 ```
- "sources": [
-            "node-docker-health/models", // <--- add it e.g. here
-            "loopback/common/models",
-            "loopback/server/models",
-            "../common/models",
-            "./models"
-        ],
+{
+  "node-docker-health": {
+
+  }
+
+}
 ```
 
-Now edit `server/models-config.json`
+Second, add the following dependency in the `package.json` file:
+
+```
+"node-docker-health": "^0.2.0"
+```
 
 Then edit the `Dockerfile` and add the following line in it.
 
